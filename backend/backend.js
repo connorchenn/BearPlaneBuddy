@@ -79,3 +79,12 @@ function addMember() {
     });
 }
 
+//this function will remove a member from a group
+function removeMember() {
+    var group = document.getElementById("group").value;
+    var members = document.getElementById("members").value;
+    var groupRef = firebase.database().ref('groups/' + group);
+    groupRef.update({
+        members: members
+    });
+}
