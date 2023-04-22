@@ -52,3 +52,30 @@ var firebaseConfig = {
         alert("Error logging in: " + error.message);
       });
   }
+
+//this function will create a group in the database with a maximum of 4 members, specifying the airport, time, and the area of meet
+function createGroup() {
+    var airport = document.getElementById("airport").value;
+    var time = document.getElementById("time").value;
+    var area = document.getElementById("area").value;
+    var group = document.getElementById("group").value;
+    var members = document.getElementById("members").value;
+    var groupRef = firebase.database().ref('groups/' + group);
+    groupRef.set({
+        airport: airport,
+        time: time,
+        area: area,
+        members: members
+    });
+} 
+
+//this function will add a member to a group
+function addMember() {
+    var group = document.getElementById("group").value;
+    var members = document.getElementById("members").value;
+    var groupRef = firebase.database().ref('groups/' + group);
+    groupRef.update({
+        members: members
+    });
+}
+
