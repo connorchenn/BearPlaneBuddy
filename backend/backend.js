@@ -57,14 +57,12 @@ var firebaseConfig = {
 function createGroup() {
     var airport = document.getElementById("airport").value;
     var time = document.getElementById("time").value;
-    var area = document.getElementById("area").value;
     var group = document.getElementById("group").value;
     var members = document.getElementById("members").value;
     var groupRef = firebase.database().ref('groups/' + group);
     groupRef.set({
         airport: airport,
         time: time,
-        area: area,
         members: members
     });
 } 
@@ -86,5 +84,14 @@ function removeMember() {
     var groupRef = firebase.database().ref('groups/' + group);
     groupRef.update({
         members: members
+    });
+}
+
+//this function will logout the user from the website
+function logOut() {
+    firebase.auth().signOut().then(function() {
+        alert("Logged out successfully!");
+    }).catch(function(error) {
+        alert("Error logging out: " + error.message);
     });
 }
