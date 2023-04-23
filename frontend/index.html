@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+    <main>
+        <h1>Welcome to My Website</h1>  
+    </main>
+	<script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAp1ZJXQmr1RQnEE-aJisME3CsiffyaZX0",
+          authDomain: "bearplanebuddy.firebaseapp.com",
+          projectId: "bearplanebuddy",
+          storageBucket: "bearplanebuddy.appspot.com",
+          messagingSenderId: "1095288640396",
+          appId: "1:1095288640396:web:46fb14569653264d4a7ca9",
+          measurementId: "G-T0DVLEC2P3"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+  </body>
+</html>
