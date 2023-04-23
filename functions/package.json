@@ -1,0 +1,28 @@
+{
+  "name": "bearplanebuddy",
+  "version": "1.0.0",
+  "description": "Final Project for Full Stack Decal",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connorchenn/finalprojdecal.git"
+  },
+  "keywords": [
+    "\"web\"",
+    "\"development\"",
+    "\"JavaScript\"",
+    "\"front-end\"",
+    "and",
+    "\"back-end"
+  ],
+  "author": "VishnuSuresh",
+  "license": "ISC",
+  "types": "./index.d.ts",
+  "bugs": {
+    "url": "https://github.com/connorchenn/finalprojdecal/issues"
+  },
+  "homepage": "https://github.com/connorchenn/finalprojdecal#readme"
+}
