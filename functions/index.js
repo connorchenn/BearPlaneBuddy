@@ -1,3 +1,12 @@
+
+
+// // Create and deploy your first functions
+// // https://firebase.google.com/docs/functions/get-started
+//
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//   functions.logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
 const functions = require('firebase-functions');
 const express = require('express');
 const engines = require('consolidate');
@@ -10,7 +19,7 @@ app.set('views','./views');
 app.set('view engine','hbs');
 
 
-var serviceAccount = require("./bearplanebuddy-firebase-adminsdk-2zk04-31e4f40d76.json");
+var serviceAccount = require("./functions/bearplanebuddy-firebase-adminsdk-2zk04-31e4f40d76.json");
 admin.initializeApp({
 credential: admin.credential.cert(serviceAccount),
 databaseURL: "https://bearplanebuddy.firebaseio.com"

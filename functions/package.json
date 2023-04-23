@@ -1,28 +1,26 @@
 {
-  "name": "bearplanebuddy",
-  "version": "1.0.0",
-  "description": "Final Project for Full Stack Decal",
-  "main": "index.js",
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
   "scripts": {
-    "test": "jest"
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/connorchenn/finalprojdecal.git"
+  "engines": {
+    "node": "16"
   },
-  "keywords": [
-    "\"web\"",
-    "\"development\"",
-    "\"JavaScript\"",
-    "\"front-end\"",
-    "and",
-    "\"back-end"
-  ],
-  "author": "VishnuSuresh",
-  "license": "ISC",
-  "types": "./index.d.ts",
-  "bugs": {
-    "url": "https://github.com/connorchenn/finalprojdecal/issues"
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.5.0",
+    "firebase-functions": "^4.2.0"
   },
-  "homepage": "https://github.com/connorchenn/finalprojdecal#readme"
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.0.0"
+  },
+  "private": true
 }
