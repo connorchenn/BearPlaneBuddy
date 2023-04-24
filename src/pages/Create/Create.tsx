@@ -1,7 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import { Button } from '@chakra-ui/react';
 import useAuth from 'contexts/Auth/useAuth';
+import { initializeApp } from 'firebase/app';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { MouseEvent, useState } from 'react';
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -18,21 +19,37 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-
 export default function Create() {
-  const { user} = useAuth();
-  try {
-    const docRef = await addDoc(collection(db, "users"), {
-      name: user?.displayName,
-      email: user?.email,
-    });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
+  const { user } = useAuth();
+  const [name, setName] = useState<string>('');
+  const [time, setTime] = useState<Date>(new Date());
+  const [location, setLocation] = useState<string>('');
+
+  async function handleCreate(e: MouseEvent) {
+    e.preventDefault();
+    try {
+      const docRef = await addDoc(collection(db, 'groups'), {
+        name: name,
+        time: time?.toISOString(),
+        location: location,
+        users: [],
+      });
+      console.log('Document written with ID: ', docRef.id);
+    } catch (e) {
+      console.error('Error adding document: ', e);
+    }
   }
-  return <div></div>;
+
+  return (
+    <div>
+      <form>
+        <Button type='submit' onClick={handleCreate}>
+          Create Group
+        </Button>
+      </form>
+    </div>
+  );
 }
