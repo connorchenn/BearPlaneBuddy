@@ -49,6 +49,8 @@ export default function Home() {
     setGroups(groups);
   }
 
+
+  //i dont think this part works, getting index of issue
   function addUserToGroup(groupID: string, user: any) {
     const docRef = doc(db, 'groups', groupID);
     updateDoc(docRef, {

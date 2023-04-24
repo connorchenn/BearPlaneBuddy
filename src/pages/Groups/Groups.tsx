@@ -41,16 +41,22 @@ export default function Groups() {
       const users: { name: string, email: string }[] = groupData?.users || [];
       return users;
     }
+
+    //how do i get the groupid, filter to that group, and then display all the users in that group
+    //how do i switch pages
     
-    
+    /*
     const people = await init();
     people.forEach(user => {
         console.log(user.name);
     });
+    */
+
+
 
 
       return (
-        <Box textAlign='center' fontSize='xl' color='black' ></Box>
+        <div> hey</div>
       );  
 }
 
