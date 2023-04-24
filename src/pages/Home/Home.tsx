@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@chakra-ui/react';
 import useAuth from 'contexts/Auth/useAuth';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
-
+import { useNavigate } from 'react-router-dom';
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -33,6 +33,7 @@ const db = getFirestore(app);
 export default function Home() {
   const [groups, setGroups] = useState<any>([]);
   const { user, loginWithGoogle, logout } = useAuth();
+  const navigate = useNavigate();
 
   async function init() {
     const q = query(collection(db, 'groups'));
@@ -46,26 +47,19 @@ export default function Home() {
     setGroups(groups);
   }
 
-  //added this part - connor
   function addUserToGroup(groupID: string, user: any) {
     const docRef = doc(db, 'groups', groupID);
     updateDoc(docRef, {
       users: arrayUnion(user),
     });
-    window.location.href = "/groups";
-    console.log("groups created");
+    //switch windows
   }
-
- 
-
-
-  
 
   useEffect(() => {
     init();
   }, []);
 
-  return ( //added this part - Connor
+  return ( 
   <div>
     {groups.map((group: any, groupIdx: number) => (
     <div key={groupIdx} style={{ display: "block" }}>

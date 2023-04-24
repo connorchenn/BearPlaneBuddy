@@ -3,8 +3,9 @@ import useAuth from 'contexts/Auth/useAuth';
 
 export default function Login() {
   const { user, loginWithGoogle } = useAuth();
+  window.location.href = "/";
   return (
-    <Box textAlign='center' fontSize='xl' color='black'>
+    <Box textAlign='center' fontSize='xl' color='black' >
       <Grid minH='100vh' p={3}>
         <VStack spacing={8}>
           <Button onClick={loginWithGoogle}>Login</Button>
