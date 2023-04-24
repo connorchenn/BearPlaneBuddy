@@ -48,6 +48,25 @@ export default function Create() {
   return (
     <div>
       <form>
+        <label>
+          Group Name:
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Time:
+          <input type="datetime-local" value={time?.toISOString()} onChange={(e) => setTime(new Date(e.target.value))} />
+        </label>
+        <br />
+        <label>
+          Location:
+          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
+        </label>
+        <br />
+        <br />
+        <br />
+
+      
         <Button type='submit' onClick={handleCreate}>
           Create Group
         </Button>

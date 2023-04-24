@@ -1,6 +1,15 @@
 import { Box, Button, Grid, Text, VStack } from '@chakra-ui/react';
 import useAuth from 'contexts/Auth/useAuth';
 import { initializeApp } from 'firebase/app';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import {
+    collection,
+    getDoc,
+    getFirestore,
+    query,
+    where,
+  } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyAp1ZJXQmr1RQnEE-aJisME3CsiffyaZX0',
@@ -13,11 +22,36 @@ const firebaseConfig = {
   };
   
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+
+
 
 export default function Groups() {
-    //displays all members of a certain group
-    return (
-        <div>hey</div>
-    )
+    const app = initializeApp(firebaseConfig);
+
+    const db = getFirestore(app);
+
+    const [users, setUsers] = useState([]);
+    async function init() {
+      const groupDocRef = doc(db, 'groups', 'MLTBZUDGdew7PAj6PfYN');
+      const groupDoc = await getDoc(groupDocRef);
+      const groupData = groupDoc.data();
+      if (!groupData) {
+        return [];
+      }
+      const users: { name: string, email: string }[] = groupData?.users || [];
+      return users;
+    }
+    
+    
+    const people = await init();
+    people.forEach(user => {
+        console.log(user.name);
+    });
+
+
+      return (
+        <Box textAlign='center' fontSize='xl' color='black' ></Box>
+      );  
 }
+
+    //displays all members of a certain group

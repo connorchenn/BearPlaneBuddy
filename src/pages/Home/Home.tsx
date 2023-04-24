@@ -11,6 +11,7 @@ import { Button } from '@chakra-ui/react';
 import useAuth from 'contexts/Auth/useAuth';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -33,7 +34,8 @@ const db = getFirestore(app);
 export default function Home() {
   const [groups, setGroups] = useState<any>([]);
   const { user, loginWithGoogle, logout } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useNavigate() as (path: string) => void;
+
 
   async function init() {
     const q = query(collection(db, 'groups'));
@@ -52,7 +54,7 @@ export default function Home() {
     updateDoc(docRef, {
       users: arrayUnion(user),
     });
-    //switch windows
+    navigate('/groups');
   }
 
   useEffect(() => {
@@ -64,11 +66,11 @@ export default function Home() {
     {groups.map((group: any, groupIdx: number) => (
     <div key={groupIdx} style={{ display: "block" }}>
       <div>{group.name}, {group.time}, {group.location} 
-      <form>
-        <Button type='submit' onClick={() => addUserToGroup(group.id, { name: user?.displayName})}>
+      <Link to='/groups'>
+        <Button type='button' onClick={() => addUserToGroup(group.id, { name: user?.displayName, email: user?.email})}>
           Join {group.name}
         </Button>
-      </form>
+      </Link>
       </div>
     </div>
   ))}
