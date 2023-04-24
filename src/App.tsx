@@ -3,6 +3,7 @@ import Create from 'pages/Create/Create';
 import Home from 'pages/Home/Home';
 import Login from 'pages/Login/Login';
 import Test from 'pages/Test/Test';
+import Groups from 'pages/Groups/Groups';
 import {
   BrowserRouter,
   Route,
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: '/test',
     element: <Test />,
+  },
+  {
+    path: '/groups',
+    element: <Groups />,
   },
 ]);
 
