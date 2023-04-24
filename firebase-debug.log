@@ -1,0 +1,94 @@
+[debug] [2023-04-23T22:26:53.996Z] ----------------------------------------------------------------------
+[debug] [2023-04-23T22:26:53.997Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only hosting,functions
+[debug] [2023-04-23T22:26:53.997Z] CLI Version:   11.28.0
+[debug] [2023-04-23T22:26:53.998Z] Platform:      darwin
+[debug] [2023-04-23T22:26:53.998Z] Node Version:  v18.16.0
+[debug] [2023-04-23T22:26:53.999Z] Time:          Sun Apr 23 2023 15:26:53 GMT-0700 (Pacific Daylight Time)
+[debug] [2023-04-23T22:26:53.999Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-23T22:26:54.060Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-23T22:26:54.060Z] > authorizing via signed-in user (vishnusuresh@berkeley.edu)
+[debug] [2023-04-23T22:26:54.060Z] [iam] checking project bearplanebuddy for permissions ["firebase.projects.get"]
+[debug] [2023-04-23T22:26:54.061Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bearplanebuddy:testIamPermissions [none]
+[debug] [2023-04-23T22:26:54.061Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bearplanebuddy:testIamPermissions x-goog-quota-user=projects/bearplanebuddy
+[debug] [2023-04-23T22:26:54.061Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bearplanebuddy:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-04-23T22:26:54.238Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bearplanebuddy:testIamPermissions 200
+[debug] [2023-04-23T22:26:54.238Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bearplanebuddy:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-04-23T22:26:54.239Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy [none]
+[debug] [2023-04-23T22:26:54.679Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy 200
+[debug] [2023-04-23T22:26:54.679Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy {"projectId":"bearplanebuddy","projectNumber":"1095288640396","displayName":"BearPlaneBuddy","name":"projects/bearplanebuddy","resources":{"hostingSite":"bearplanebuddy"},"state":"ACTIVE","etag":"1_50b766dc-2e6e-4667-a3fe-933247c2edfc"}
+[debug] [2023-04-23T22:26:54.685Z] defaultcredentials: writing to file /Users/vishnusuresh/.config/firebase/vishnusuresh_berkeley_edu_application_default_credentials.json
+[debug] [2023-04-23T22:26:54.686Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/bearplanebuddy/sites 
+[debug] [2023-04-23T22:26:54.687Z] Setting GAC to /Users/vishnusuresh/.config/firebase/vishnusuresh_berkeley_edu_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/vishnusuresh/.config/firebase/vishnusuresh_berkeley_edu_application_default_credentials.json"}}
+[debug] [2023-04-23T22:26:54.688Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy/adminSdkConfig [none]
+[debug] [2023-04-23T22:26:55.078Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy/adminSdkConfig 200
+[debug] [2023-04-23T22:26:55.078Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy/adminSdkConfig {"projectId":"bearplanebuddy","storageBucket":"bearplanebuddy.appspot.com"}
+[debug] [2023-04-23T22:26:55.282Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/bearplanebuddy/sites 200
+[debug] [2023-04-23T22:26:55.282Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/bearplanebuddy/sites {"sites":[{"name":"projects/bearplanebuddy/sites/bearplanebuddy","defaultUrl":"https://bearplanebuddy.web.app","appId":"1:1095288640396:web:46fb14569653264d4a7ca9","type":"DEFAULT_SITE"}]}
+[debug] [2023-04-23T22:26:55.282Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy/webApps/1:1095288640396:web:46fb14569653264d4a7ca9/config [none]
+[debug] [2023-04-23T22:26:55.879Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy/webApps/1:1095288640396:web:46fb14569653264d4a7ca9/config 200
+[debug] [2023-04-23T22:26:55.879Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy/webApps/1:1095288640396:web:46fb14569653264d4a7ca9/config {"projectId":"bearplanebuddy","appId":"1:1095288640396:web:46fb14569653264d4a7ca9","storageBucket":"bearplanebuddy.appspot.com","apiKey":"AIzaSyAp1ZJXQmr1RQnEE-aJisME3CsiffyaZX0","authDomain":"bearplanebuddy.firebaseapp.com","messagingSenderId":"1095288640396","measurementId":"G-T0DVLEC2P3"}
+[debug] [2023-04-23T22:26:55.901Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy [none]
+[debug] [2023-04-23T22:26:56.313Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy 200
+[debug] [2023-04-23T22:26:56.313Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bearplanebuddy {"projectId":"bearplanebuddy","projectNumber":"1095288640396","displayName":"BearPlaneBuddy","name":"projects/bearplanebuddy","resources":{"hostingSite":"bearplanebuddy"},"state":"ACTIVE","etag":"1_50b766dc-2e6e-4667-a3fe-933247c2edfc"}
+[debug] [2023-04-23T22:26:56.314Z] Specified "public" directory "public" does not exist; Deploy to Hosting site "bearplanebuddy" may fail or be empty.
+[info] i  functions: Watching "/Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions\" for Cloud Functions..."}}
+[info] i  hosting[bearplanebuddy]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting[bearplanebuddy]: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[debug] [2023-04-23T22:26:56.386Z] Validating nodejs source
+[debug] [2023-04-23T22:26:56.880Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.5.0",
+    "firebase-functions": "^4.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.0.0"
+  },
+  "private": true
+}
+[debug] [2023-04-23T22:26:56.881Z] Building nodejs source
+[debug] [2023-04-23T22:26:56.881Z] Failed to find version of module node: reached end of search path /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules
+[warn] ⚠  functions: Your requested "node" version "16" doesn't match your global version "18". Using node@18 from host. 
+[debug] [2023-04-23T22:26:56.882Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-04-23T22:26:56.887Z] Found firebase-functions binary at '/Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/.bin/firebase-functions'
+[debug] [2023-04-23T22:26:57.000Z] Serving at port 8545
+
+[debug] [2023-04-23T22:26:57.289Z] Got response from /__/functions.yaml Failed to generate manifest from function source: Error: Cannot find module './functions/bearplanebuddy-firebase-adminsdk-2zk04-31e4f40d76.json'
+Require stack:
+- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/index.js
+- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/firebase-functions/lib/runtime/loader.js
+- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/firebase-functions/lib/bin/firebase-functions.js
+[debug] [2023-04-23T22:26:57.291Z] Failed to parse functions.yamlincomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line 1, column 56:
+     ... fest from function source: Error: Cannot find module './function ... 
+                                         ^ {"name":"YAMLException","reason":"incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line","mark":{"name":null,"buffer":"Failed to generate manifest from function source: Error: Cannot find module './functions/bearplanebuddy-firebase-adminsdk-2zk04-31e4f40d76.json'\nRequire stack:\n- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/index.js\n- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/firebase-functions/lib/runtime/loader.js\n- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/firebase-functions/lib/bin/firebase-functions.js\n\u0000","position":55,"line":0,"column":55},"message":"incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line 1, column 56:\n     ... fest from function source: Error: Cannot find module './function ... \n                                         ^"}
+[debug] [2023-04-23T22:26:57.297Z] shutdown requested via /__/quitquitquit
+
+[error] ⬢  functions: Failed to load function definition from source: FirebaseError: Failed to load function definition from source: Failed to generate manifest from function source: Error: Cannot find module './functions/bearplanebuddy-firebase-adminsdk-2zk04-31e4f40d76.json'
+Require stack:
+- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/index.js
+- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/firebase-functions/lib/runtime/loader.js
+- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/firebase-functions/lib/bin/firebase-functions.js {"metadata":{"emulator":{"name":"functions"},"message":"Failed to load function definition from source: FirebaseError: Failed to load function definition from source: Failed to generate manifest from function source: Error: Cannot find module './functions/bearplanebuddy-firebase-adminsdk-2zk04-31e4f40d76.json'\nRequire stack:\n- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/index.js\n- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/firebase-functions/lib/runtime/loader.js\n- /Users/vishnusuresh/Desktop/cs198-99/finalprojdecal/functions/node_modules/firebase-functions/lib/bin/firebase-functions.js"}}
+[info] [hosting] Rewriting / to http://localhost:5001/bearplanebuddy/us-central1/app for local Function us-central1/app
+[debug] [2023-04-23T22:36:04.142Z] >>> [apiv2][query] GET http://localhost:5001/bearplanebuddy/us-central1/app/ 
+[debug] [2023-04-23T22:36:04.151Z] [work-queue] {"queuedWork":["/bearplanebuddy/us-central1/app/-2023-04-23T22:36:04.151Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2023-04-23T22:36:04.151Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/bearplanebuddy/us-central1/app/-2023-04-23T22:36:04.151Z"],"workRunningCount":1}
+[debug] [2023-04-23T22:36:04.153Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2023-04-23T22:36:04.154Z] <<< [apiv2][status] GET http://localhost:5001/bearplanebuddy/us-central1/app/ 404
+[debug] [2023-04-23T22:36:04.154Z] <<< [apiv2][body] GET http://localhost:5001/bearplanebuddy/us-central1/app/ [stream]
+[info] i  hosting: ::1 - - [23/Apr/2023:22:36:04 +0000] "GET / HTTP/1.1" 404 62 "https://towardsdatascience.com/host-a-dynamic-website-on-google-firebase-for-free-using-node-js-and-cloud-firestore-db-88e98239e1b9" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [23/Apr/2023:22:36:04 +0000] \"GET / HTTP/1.1\" 404 62 \"https://towardsdatascience.com/host-a-dynamic-website-on-google-firebase-for-free-using-node-js-and-cloud-firestore-db-88e98239e1b9\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36\""}}

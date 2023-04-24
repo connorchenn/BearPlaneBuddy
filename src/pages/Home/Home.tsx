@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <div>
       {groups.map((group: any, groupIdx: number) => (
-        <div key={groupIdx}>{group.name}, {group.time}, {group.location}</div>
+        <button><div key={groupIdx}>{group.name}, {group.time}, {group.location}</div> </button>
       ))}
     </div>
   );
