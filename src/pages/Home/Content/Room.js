@@ -7,7 +7,7 @@ export default function Room(props) {
                 {props.airport}
             </div>
             <div className="time" >
-                {props.time}
+                {new Date(props.time).toLocaleDateString()}
             </div>
             <div className="name" >
             {props.name}
