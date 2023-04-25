@@ -3,6 +3,7 @@ import useAuth from 'contexts/Auth/useAuth';
 import { initializeApp } from 'firebase/app';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { MouseEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -24,6 +25,7 @@ const db = getFirestore(app);
 
 export default function Create() {
   const { user } = useAuth();
+  const navigate = useNavigate() as (path: string) => void;
   const [name, setName] = useState<string>('');
   const [time, setTime] = useState<Date>(new Date());
   const [location, setLocation] = useState<string>('');
@@ -41,6 +43,10 @@ export default function Create() {
     } catch (e) {
       console.error('Error adding document: ', e);
     }
+  }
+
+  function handleHome() {
+    navigate(`/`);
   }
 
   
@@ -70,6 +76,10 @@ export default function Create() {
       
         <Button type='submit' onClick={handleCreate} style={{ fontSize: '40px' }}>
           Create Group
+        </Button>
+
+        <Button type='submit' onClick={handleHome} style={{ fontSize: '40px' }}>
+          Return Home
         </Button>
       </form>
       {time && (
