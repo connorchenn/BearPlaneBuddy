@@ -4,6 +4,7 @@ import { initializeApp } from 'firebase/app';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { MouseEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './Create.css';
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -40,6 +41,7 @@ export default function Create() {
         users: [],
       });
       console.log('Document written with ID: ', docRef.id);
+      handleHome();
     } catch (e) {
       console.error('Error adding document: ', e);
     }
