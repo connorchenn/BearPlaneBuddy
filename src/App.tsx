@@ -1,9 +1,9 @@
 import { Providers } from 'Providers';
 import Create from 'pages/Create/Create';
+import Groups from 'pages/Groups/Groups';
 import Home from 'pages/Home/Home';
 import Login from 'pages/Login/Login';
 import Test from 'pages/Test/Test';
-import Groups from 'pages/Groups/Groups';
 import {
   BrowserRouter,
   Route,
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     element: <Test />,
   },
   {
-    path: '/groups',
+    path: '/groups/:id',
     element: <Groups />,
   },
 ]);
@@ -40,28 +40,3 @@ export const App = () => (
     <RouterProvider router={router} />
   </Providers>
 );
-
-/* 
-
-<Box textAlign='center' fontSize='xl'>
-      <Grid minH='100vh' p={3}>
-        <ColorModeSwitcher justifySelf='flex-end' />
-        <VStack spacing={8}>
-          <Logo h='40vmin' pointerEvents='none' />
-          <Text>
-            Edit <Code fontSize='xl'>src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color='teal.500'
-            href='https://chakra-ui.com'
-            fontSize='2xl'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-
-*/

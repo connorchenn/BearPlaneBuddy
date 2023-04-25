@@ -8,20 +8,16 @@
         line-height: 5vw;
         text-align: center;
 }
- body {
+body {
     background-color: #FDB515 !important;
-    width: 100vw!important;
-    height: 100vh !important;
 }
 
 #top {
-
     width: 100%;
     height: 20vh;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
-    
 }
 
 #searchBox {
@@ -29,31 +25,66 @@
     height: 8vh;
     border:black solid 2px;
     border-radius: 3vh;
-    text-align: center;
+    text-align: left;
+    padding-left: 1em;
 }
 
-button {
-    color: white !important;
-    background-color: #003262 !important;
-    width: 10vw !important;
-    height: 8vh !important;
-    border:black solid 2px !important;
-    border-radius: 3vh !important;
-    text-align: center !important;
-    align-content: center !important;
-    justify-content:center !important;
-}
+#btn {
+    color: white;
+    background-color: #003262;
+    width: 10vw;
+    height: 8vh;
+    border:black solid 2px;
+    border-radius: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 #bottom {
     width: 100%;
     height: 80vh;
     display: flex;
-    align-items: center;
+    align-items: top;
     justify-content: center;
 }
 
 #board {
     height: 90%;
     width: 90%;
-    background:black;
+
+    overflow-y: auto;
+}
+
+.room {
+    font-weight: bold;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    color: white;
+    background: #003262;
+    width: 100%;
+    height: 15vh;
+    border-bottom:White solid 1px;
+}
+
+#description {
+    background-color: black !important;
+    height: 10vh !important;
+}
+
+.airport {
+
+}
+
+.time {
+
+}
+
+.name {
+
+}
+
+.joined {
+
 }

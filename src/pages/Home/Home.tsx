@@ -1,17 +1,22 @@
+//import { Button } from '@chakra-ui/react';
+import useAuth from 'contexts/Auth/useAuth';
 import { initializeApp } from 'firebase/app';
+import Button from './Content/Button';
+import './Home.css';
+import RoomList from './Content/RoomList';
+import Room from './Content/Room';
 import {
+  arrayUnion,
   collection,
+  doc,
   getDocs,
   getFirestore,
   query,
+  updateDoc,
   where,
 } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-//import { Button } from '@chakra-ui/react';
-import useAuth from 'contexts/Auth/useAuth';
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
-import Content from './Content'
-import './Home.css'
+import { MouseEvent, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -35,6 +40,7 @@ const db = getFirestore(app);
 export default function Home() {
   const [groups, setGroups] = useState<any>([]);
   const { user, loginWithGoogle, logout } = useAuth();
+  const navigate = useNavigate() as (path: string) => void;
 
   async function init() {
     const q = query(collection(db, 'groups'));
@@ -42,47 +48,88 @@ export default function Home() {
     const results = await getDocs(q);
     let groups: any[] = [];
     results.forEach((doc) => {
-      groups.push(doc.data());
+      groups.push({ ...doc.data(), id: doc.id });
     });
 
     setGroups(groups);
   }
 
-  //added this part - connor
-  function addUserToGroup(groupID: string, user: any) {
+  //i dont think this part works, getting index of issue
+  async function addUserToGroup(groupID: string) {
+    if (!user) throw new Error(`No user`);
     const docRef = doc(db, 'groups', groupID);
-    updateDoc(docRef, {
-      users: arrayUnion(user),
+    await updateDoc(docRef, {
+      users: arrayUnion(
+        JSON.stringify({
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+        })
+      ),
     });
-    window.location.href = "/groups";
-    console.log("groups created");
+    navigate(`/groups/${groupID}`);
   }
 
- 
+  function handleJoin(e: MouseEvent, groupId: string) {
+    console.log({groupId});
+    addUserToGroup(groupId);
+  }
 
+  function handleLogout() {
+    navigate(`/login`);
+  }
 
-  
+  function handleCreateGroup() {
+    navigate(`/create`);
+  }
 
   useEffect(() => {
     init();
   }, []);
 
-  return ( //added this part - Connor
-    <div>
-      <Content></Content>
-  
+  return (
+    <>
+    <div id="top">
+        <input id="searchBox" type="text" placeholder="Search flight # | time | group number"></input>
+        <Button handle={handleCreateGroup} text="Add"/>
+        <Button handle={handleLogout} text="Logout"/>
     </div>
-  );
+    <div id="bottom">
+        <div id="board">
+            <div id="description" className="room">
+                <div className="airport" >
+                    Airport
+                </div>
+            <div className="time" >
+                Time
+            </div>
+            <div className="name" >
+                Group Name
+            </div>
+            <div className="joined" >
+                Joined
+            </div>
+            </div>
+            <RoomList handle={handleJoin} rooms={groups}/>
+        </div>
+    </div>
+    </>
+);
+
+  // return (
+  //   <div>
+  //     {groups.map((group: any, groupIdx: number) => (
+  //       <div key={groupIdx} style={{ display: 'block' }}>
+  //         <div>
+  //           <span>
+  //             {group.name}, {group.time}, {group.location}
+  //           </span>
+  //           <Button type='button' onClick={(e) => handleJoin(e, group.id)}>
+  //             Join {group.name}
+  //           </Button>
+  //         </div>
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
 }
-    
-    {/* {groups.map((group: any, groupIdx: number) => (
-    <div key={groupIdx} style={{ display: "block" }}>
-      <div>{group.name}, {group.time}, {group.location} 
-      <form>
-        <Button type='submit' onClick={() => addUserToGroup(group.id, { name: user?.displayName})}>
-          Join {group.name}
-        </Button>
-      </form>
-      </div>
-    </div>
-  ))} */}
