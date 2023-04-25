@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { FirebaseError, initializeApp } from 'firebase/app';
 import {
   GoogleAuthProvider,
   User,
@@ -27,13 +27,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 interface ThemeContext_Props {
   user: User | undefined;
   logout: () => void;
-  loginWithGoogle: () => void;
+  loginWithGoogle: () => Promise<void>;
+  isAuthenticated: boolean;
 }
 
 interface ThemeProvider_Props {
@@ -46,26 +47,23 @@ export default function AuthProvider({ children }: ThemeProvider_Props) {
   const [user, setUser] = useState<ThemeContext_Props['user'] | undefined>();
 
   async function loginWithGoogle() {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        if (!credential) throw new Error(`No auth credential`);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        setUser(user);
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
+    try {
+      const res = await signInWithPopup(auth, provider);
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(res);
+      if (!credential) throw new Error(`No auth credential`);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = res.user;
+      setUser(user);
+    } catch (e: any) {
+      const errorCode = e.code;
+      const errorMessage = e.message;
+      // The email of the user's account used.
+      const email = e.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(e);
+    }
   }
 
   function logout() {
@@ -73,7 +71,9 @@ export default function AuthProvider({ children }: ThemeProvider_Props) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loginWithGoogle, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated: !!user, user, loginWithGoogle, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

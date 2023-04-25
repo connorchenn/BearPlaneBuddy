@@ -1,17 +1,18 @@
+import { Button } from '@chakra-ui/react';
+import useAuth from 'contexts/Auth/useAuth';
 import { initializeApp } from 'firebase/app';
 import {
+  arrayUnion,
   collection,
+  doc,
   getDocs,
   getFirestore,
   query,
+  updateDoc,
   where,
 } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import { Button } from '@chakra-ui/react';
-import useAuth from 'contexts/Auth/useAuth';
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { MouseEvent, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -36,46 +37,56 @@ export default function Home() {
   const { user, loginWithGoogle, logout } = useAuth();
   const navigate = useNavigate() as (path: string) => void;
 
-
   async function init() {
     const q = query(collection(db, 'groups'));
 
     const results = await getDocs(q);
     let groups: any[] = [];
     results.forEach((doc) => {
-      groups.push(doc.data());
+      groups.push({ ...doc.data(), id: doc.id });
     });
 
     setGroups(groups);
   }
 
-
   //i dont think this part works, getting index of issue
-  function addUserToGroup(groupID: string, user: any) {
+  async function addUserToGroup(groupID: string) {
+    if (!user) throw new Error(`No user`);
     const docRef = doc(db, 'groups', groupID);
-    updateDoc(docRef, {
-      users: arrayUnion(user),
+    await updateDoc(docRef, {
+      users: arrayUnion(
+        JSON.stringify({
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+        })
+      ),
     });
-    navigate('/groups');
+    navigate(`/groups/${groupID}`);
+  }
+
+  function handleJoin(e: MouseEvent, groupId: string) {
+    addUserToGroup(groupId);
   }
 
   useEffect(() => {
     init();
   }, []);
 
-  return ( 
-  <div>
-    {groups.map((group: any, groupIdx: number) => (
-    <div key={groupIdx} style={{ display: "block" }}>
-      <div>{group.name}, {group.time}, {group.location} 
-      <Link to='/groups'>
-        <Button type='button' onClick={() => addUserToGroup(group.id, { name: user?.displayName, email: user?.email})}>
-          Join {group.name}
-        </Button>
-      </Link>
-      </div>
+  return (
+    <div>
+      {groups.map((group: any, groupIdx: number) => (
+        <div key={groupIdx} style={{ display: 'block' }}>
+          <div>
+            <span>
+              {group.name}, {group.time}, {group.location}
+            </span>
+            <Button type='button' onClick={(e) => handleJoin(e, group.id)}>
+              Join {group.name}
+            </Button>
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
   );
 }
