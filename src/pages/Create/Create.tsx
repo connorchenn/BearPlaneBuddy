@@ -46,31 +46,41 @@ export default function Create() {
   
 
   return (
-    <div>
+    <div style={{color: '#003262', marginTop: '100px', fontSize: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+      <text style = {{fontSize: '50px'}}>Create a group!</text>
       <form>
-        <label>
-          Group Name:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <label style={{ fontSize: '40px' }}>
+          Group Name:         
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)}  style={{ fontSize: '40px'}}/>
         </label>
         <br />
-        <label>
-          Time:
-          <input type="datetime-local" value={time?.toISOString()} onChange={(e) => setTime(new Date(e.target.value))} />
+        <label style={{ fontSize: '40px' }}>
+          Time of flight:
+          <input type="datetime-local" value={time?.toISOString()} onChange={(e) => setTime(new Date(e.target.value))} style={{ fontSize: '40px' }} />
         </label>
         <br />
-        <label>
+        <label style={{ fontSize: '40px' }}>
           Location:
-          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
+          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} style={{ fontSize: '40px'}}/>
         </label>
         <br />
         <br />
         <br />
 
       
-        <Button type='submit' onClick={handleCreate}>
+        <Button type='submit' onClick={handleCreate} style={{ fontSize: '40px' }}>
           Create Group
         </Button>
       </form>
+      {time && (
+      <p style={{ fontSize: '20px' }}>
+        
+        Selected date: {time.toLocaleDateString()} {time.toLocaleTimeString()}
+        <br />
+        Default: Current Date and Time. Please change the date above to a future date!
+        <br />
+      </p>
+    )}
     </div>
   );
 }
