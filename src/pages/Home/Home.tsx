@@ -7,9 +7,11 @@ import {
   where,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { Button } from '@chakra-ui/react';
+//import { Button } from '@chakra-ui/react';
 import useAuth from 'contexts/Auth/useAuth';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import Content from './Content'
+import './Home.css'
 
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -66,8 +68,14 @@ export default function Home() {
   }, []);
 
   return ( //added this part - Connor
-  <div>
-    {groups.map((group: any, groupIdx: number) => (
+    <div>
+      <Content></Content>
+  
+    </div>
+  );
+}
+    
+    {/* {groups.map((group: any, groupIdx: number) => (
     <div key={groupIdx} style={{ display: "block" }}>
       <div>{group.name}, {group.time}, {group.location} 
       <form>
@@ -77,7 +85,4 @@ export default function Home() {
       </form>
       </div>
     </div>
-  ))}
-</div>
-  );
-}
+  ))} */}
