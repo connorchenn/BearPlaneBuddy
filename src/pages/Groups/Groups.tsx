@@ -1,8 +1,12 @@
 import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , Link, useNavigate} from 'react-router-dom';
 import './Groups.css';
+import Button from './Content/Button';
+import User from './Content/User';
+import UserList from './Content/UserList';
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAp1ZJXQmr1RQnEE-aJisME3CsiffyaZX0',
@@ -21,6 +25,7 @@ const db = getFirestore(app);
 export default function Groups() {
   const { id } = useParams();
   const [group, setGroup] = useState<any>();
+  const navigate = useNavigate() as (path: string) => void;
 
   useEffect(() => {
     async function init() {
@@ -39,11 +44,42 @@ export default function Groups() {
 
   if (!group) return <div>Loading...</div>;
 
+  function handleLogout() {
+    navigate(`/login`);
+  }
+
+  function handleBack() {
+    navigate(`/`);
+  }
+
+  console.log(group);
   return (
-    <div>
-      <span>{JSON.stringify(group)}</span>
+    <>
+    <div id="top">
+        <Button handle={handleBack} text="Back"/>
+        <Button handle={handleLogout} text="Logout"/>
     </div>
-  );
+    <div id="bottom">
+        <div id="board">
+            <div id="description" className="room">
+                <div className="airport" >
+                    {group.location}
+                </div>
+            <div className="time" >
+                {group.time}
+            </div>
+            <div className="name" >
+                {group.name}
+            </div>
+            <div className="joined" >
+                {group.users.length}/4
+            </div>
+            </div>
+            <UserList users={group.users}/>
+        </div>
+    </div>
+    </>
+);
 }
 
 //displays all members of a certain group

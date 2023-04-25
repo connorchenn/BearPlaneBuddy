@@ -115,21 +115,4 @@ export default function Home() {
     </div>
     </>
 );
-
-  // return (
-  //   <div>
-  //     {groups.map((group: any, groupIdx: number) => (
-  //       <div key={groupIdx} style={{ display: 'block' }}>
-  //         <div>
-  //           <span>
-  //             {group.name}, {group.time}, {group.location}
-  //           </span>
-  //           <Button type='button' onClick={(e) => handleJoin(e, group.id)}>
-  //             Join {group.name}
-  //           </Button>
-  //         </div>
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
 }
